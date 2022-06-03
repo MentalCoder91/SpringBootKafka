@@ -12,9 +12,9 @@ public class KafaExampleApplication {
         SpringApplication.run(KafaExampleApplication.class, args);
     }
 
-    @KafkaListener(topics = "test", groupId = "group_id")
-    public void listen(User user) {
-
-        System.out.println("Received Messasge : " + user);
-    }
+//    @KafkaListener(topics = "test", groupId = "group_id")
+//    public void listen(User user) {
+//
+//        System.out.println("Received Messasge : " + user);
+//    }
 }
