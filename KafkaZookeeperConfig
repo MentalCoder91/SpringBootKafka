@@ -1,0 +1,52 @@
+
+Apache Kafka Installation.
+https://howtodoinjava.com/kafka/getting-started-windows-10/  
+
+
+https://dzone.com/articles/running-apache-kafka-on-windows-os
+
+
+
+To start Zookeeper
+cd E:\devsetup\bigdata\kafka2.5   //goto folder where kafka is installed.
+start cmd /k bin\windows\zookeeper-server-start.bat config\zookeeper.properties
+
+
+To Start Kafka
+cd E:\devsetup\bigdata\kafka2.5
+start cmd /k bin\windows\kafka-server-start.bat config\server.properties
+
+
+To stop Kafka
+cd E:\devsetup\bigdata\kafka2.5
+start cmd /k bin\windows\kafka-server-stop.bat
+
+To stop Zookeeper
+cd E:\devsetup\bigdata\kafka2.5
+start cmd /k bin\windows\zookeeper-server-stop.bat
+
+
+Create New Topic
+bin\windows\kafka-topics.bat --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic test
+kafka-topics.bat --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic practice
+ 
+ 
+Delete Topic named test
+kafka-topics.bat --zookeeper localhost:2181 --delete --topic test
+kafka-topics.bat --zookeeper localhost:2181 --alter --topic test --config retention.ms=1000
+kafka-configs --zookeeper localhost:2181 --entity-type topics --alter --add-config retention.ms=1000 --entity-name test
+kafka-run-class.bat kafka.admin.TopicCommand --delete --topic practice --zookeeper localhost:2181
+
+List all topics    goto -> /bin/windows
+kafka-topics.bat --list --zookeeper localhost:2181 
+
+
+Consumer Console
+kafka-console-consumer.bat --zookeeper localhost:2181 --topic [Topic Name] --from-beginning       //depracated
+kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic [Topic Name] --from-beginning
+kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic test --from-beginning
+
+
+
+Producer Console
+kafka-console-producer.bat --bootstrap-server localhost:9092 --topic test
